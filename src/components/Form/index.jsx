@@ -1,12 +1,15 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Row } from './styles'
 
 class Form extends Component {
   constructor() {
     super();
 
     this.state = {
-      value: ''
+      value: '',
+      date: '',
+      comment: ''
     }
   }
 
@@ -14,27 +17,43 @@ class Form extends Component {
     e.preventDefault();
     this.props.onChange(this.state.value)
     this.setState({
-      value: ''
+      value: '',
+      date: '',
+      comment: ''
     })
   }
 
   onChange = (e) => {
-    const {value} = e.target;
+    const {value, name} = e.target;
+
     this.setState({
-      value: +value
+      [name]: name === 'balance' ? +value: value
     })
   }
 
   render () {
     return (
-      <form onSubmit={this.onSubmit}><input
-        name='balance'
-        type='number'
-        placeholder='Сума'
-        value={this.state.value}
-        onChange={this.onChange}
-      />
-      <button>Зберегти</button></form>
+      <form onSubmit={this.onSubmit}>
+        <Row>
+        <input
+          type='date'
+          name='date'
+          value={this.state.date}
+          onChange={this.onChange}/>
+         <input
+          name='value'
+          type='number'
+          placeholder='Сума'
+          value={this.state.value}
+          onChange={this.onChange}/>
+        </Row>
+        <Row>
+        <textarea name='comment'
+         value={this.state.comment}
+         onChange={this.onChange}></textarea>
+        <button>Зберегти</button>
+        </Row>
+        </form>
     )
   }
 }
