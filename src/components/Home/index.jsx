@@ -4,9 +4,7 @@ import Transactions from '../Transactions';
 import Form from '../Form';
 import ErrorBoundary from '../ErrorBoundary';
 import { Wrapper } from './styles';
-
-
-let id = 0;
+import { getItems, addItem } from '../../utils/indexdb';
 
 class Home extends Component {
   constructor() {
@@ -21,19 +19,34 @@ class Home extends Component {
     console.log('constructor');
   }
 
-  onChange = (value) => {
+  componentDidMount() {
+    getItems().then((transactions) => {
+      this.setState({
+        transactions
+      })
+    }).catch(() => {
+      debugger
+    })
+  }
+
+  onChange = ({ value, date, comment }) => {
+    const transaction = {
+      value: +value,
+      comment,
+      date,
+      id: Date.now()
+    }
     this.setState((state) => ({
       balance: state.balance + Number(value),
       transactions: [
-        {
-          value,
-          label: 'change',
-          id: ++id
-        },
+        transaction,
         ...state.transactions
       ]
       })
     )
+
+    addItem(transaction)
+
   }
 
 

@@ -40,7 +40,7 @@ export const Button = styled.button`
     outline: none;
     width: 118px;
     &:hover {
-        cursor: pointer;
+        cursor: grab;
     }
 `
 Button.displayName = 'Button';
@@ -52,7 +52,7 @@ export const Comment = styled.textarea`
     padding: 5px;
     border-radius: 3px;
     width: 138px;
-    margin: 0px;
+    margin: 0;
     height: 40px;
     min-width: 140px;
     border: 1px solid #dbdbdb;
