@@ -10,8 +10,4 @@ export default {
 const Template = (args) => <Form {...args} />;
 
 export const Income = Template.bind({});
-Income.args = {
-  onChange: () => {
-
-  }
-};
+Income.args = {};
