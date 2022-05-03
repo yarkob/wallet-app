@@ -36,7 +36,7 @@ function open() {
       reject(Error(e))
     };
   })
-};
+}
 
 function addItem(item) {
   const db = html5rocks.indexedDB.db;
@@ -52,7 +52,7 @@ function addItem(item) {
   request.onerror = function(e) {
     console.log("Error Adding: ", e);
   };
-};
+}
 
 function deleteItem(id) {
   const db = html5rocks.indexedDB.db;
@@ -68,7 +68,7 @@ function deleteItem(id) {
   request.onerror = function(e) {
     console.log("Error Adding: ", e);
   };
-};
+}
 
 function getItems() {
   return new Promise((resolve, reject) => {
@@ -85,7 +85,7 @@ function getItems() {
       resolve(getAllRequest.result);
     }
   })
-};
+}
 
 export {
   open,

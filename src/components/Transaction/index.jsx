@@ -1,13 +1,19 @@
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+
+import { AppContext } from '../../providers';
 import { Wrapper, TransactionDate, Value, Comment } from './style';
 
-const Transaction = ({ transaction: {value, date, comment} }) => (
-  <Wrapper value={value}>
-    <TransactionDate>{date}</TransactionDate>
-    <Value>{value.toFixed(2)}</Value>
-    <Comment>{comment}</Comment>
-  </Wrapper>
-);
+const Transaction = ({ transaction: {value, date, comment} }) => {
+  const {state} = useContext(AppContext);
+  return (
+    <Wrapper value={value}>
+      <TransactionDate>{date}</TransactionDate>
+      <Value>{value.toFixed (2)}</Value>
+      <Comment>{comment}</Comment>
+    </Wrapper>
+  )
+};
 
 Transaction.propTypes = {
   transaction: PropTypes.shape({

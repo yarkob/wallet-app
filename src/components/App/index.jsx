@@ -9,6 +9,7 @@ import Home from '../Home';
 import About from '../About';
 import Layout from '../Layout';
 import Statistics from '../Statistics';
+import CurrencyContext from '../../providers';
 
 import { Wrapper, GlobalStyle } from './styles'
 import { open } from '../../utils/indexdb';
@@ -37,18 +38,18 @@ constructor(props) {
     return <div>Loading...</div>
   }
   return (
-    <Router>
-      <Wrapper>
-        <GlobalStyle/>
-        <Routes>
-          <Route path="/" element={<Layout/>}>
-            <Route index element={<Home/>}/>
-            <Route path="about" element={<About/>}/>
-            <Route path="statistics" element={<Statistics/>}/>
-          </Route>
-        </Routes>
-      </Wrapper>
-    </Router>
+      <Router>
+        <Wrapper>
+          <GlobalStyle/>
+          <Routes>
+            <Route path="/" element={<Layout/>}>
+              <Route index element={<Home/>}/>
+              <Route path="about" element={<About/>}/>
+              <Route path="statistics" element={<Statistics/>}/>
+            </Route>
+          </Routes>
+        </Wrapper>
+      </Router>
   )
 }
 }

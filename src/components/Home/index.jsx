@@ -14,7 +14,7 @@ const Home = () => {
     getItems().then((item) => {
       setTransactions(item)
     }).catch(() => {
-      debugger
+      console.error('error')
     })
   }, [setTransactions])
 
@@ -23,7 +23,7 @@ const Home = () => {
       value: +value,
       comment,
       date,
-      id: Date.now() 
+      id: Date.now()
     }
     setTransactions([
       transaction,
