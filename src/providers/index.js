@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react';
-import  defaultContext  from './defaultContext';
+import defaultContext from './context/defaultContext';
 
 const AppContext = createContext();
 

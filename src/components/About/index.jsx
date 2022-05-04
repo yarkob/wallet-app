@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import CurrencyContext from '../../providers';
+import { AppContext } from '../../providers';
 
 const About = () => {
-  const currency = useContext(CurrencyContext)
+  const currency = useContext(AppContext)
 
   debugger;
 
