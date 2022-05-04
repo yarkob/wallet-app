@@ -7,8 +7,8 @@ import { Wrapper } from './styles';
 import { getItems, addItem } from '../../utils/indexdb';
 
 const Home = () => {
-  const [balance, setBalance] = useState();
-  const [transactions, setTransactions] = useState();
+  const [balance, setBalance] = useState(0);
+  const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     getItems().then((item) => {

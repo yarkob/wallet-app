@@ -8,8 +8,8 @@ import {
 import Home from '../Home';
 import About from '../About';
 import Layout from '../Layout';
+import Settings from '../Settings';
 import Statistics from '../Statistics';
-import CurrencyContext from '../../providers';
 
 import { Wrapper, GlobalStyle } from './styles'
 import { open } from '../../utils/indexdb';
@@ -46,6 +46,7 @@ constructor(props) {
               <Route index element={<Home/>}/>
               <Route path="about" element={<About/>}/>
               <Route path="statistics" element={<Statistics/>}/>
+              <Route path="settings" element={<Settings/>}/>
             </Route>
           </Routes>
         </Wrapper>
