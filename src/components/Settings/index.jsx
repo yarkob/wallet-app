@@ -2,8 +2,8 @@ import { useContext } from 'react';
 
 import { AppContext } from '../../providers';
 
-const Settings = () => {
-  const {state, dispatch} = useContext(AppContext)
+const Setting = () => {
+  const {state, dispatch} = useContext(AppContext);
 
   const onChange = (e) => {
     const {value} = e.target;
@@ -16,25 +16,24 @@ const Settings = () => {
 
   return (
     <>
-    <h1>Налаштування</h1>
+      <h1>Налаштування</h1>
 
       <div>
         <form>
           <label>
             Валюта:
-
-            <select name='currency'
-                    onChange={onchange}
+            <select name="currency"
+                    onChange={onChange}
                     value={state.currency}>
-              <option value='UAN'>Гривня</option>
-              <option value='USD'>Долар США</option>
-              <option value='EUR'>Євро</option>
+              <option value="UAH">Гривня</option>
+              <option value="USD">Долар США</option>
+              <option value="EUR">Євро</option>
             </select>
           </label>
         </form>
       </div>
-    </>
-  )
+      </>
+      )
 }
 
-export default Settings;
+export default Setting;

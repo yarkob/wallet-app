@@ -6,10 +6,11 @@ import { Wrapper, TransactionDate, Value, Comment } from './style';
 
 const Transaction = ({ transaction: {value, date, comment} }) => {
   const {state} = useContext(AppContext);
+  console.log (state)
   return (
     <Wrapper value={value}>
       <TransactionDate>{date}</TransactionDate>
-      <Value>{value.toFixed (2)}</Value>
+      <Value>{`${value.toFixed (2)} ${state.currency}`}</Value>
       <Comment>{comment}</Comment>
     </Wrapper>
   )

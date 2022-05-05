@@ -5,7 +5,7 @@ const Transactions = ({ transactions }) => {
   return (
     <div>
       {transactions.map(transaction => (
-        <Transaction transaction={transaction}/>
+        <Transaction key={transaction.id} transaction={transaction}/>
       ))}
     </div>
   );
