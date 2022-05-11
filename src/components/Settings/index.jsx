@@ -1,9 +1,18 @@
-import { useContext } from 'react';
+import { useContext, useMemo, memo, useState } from 'react';
 
 import { AppContext } from '../../providers';
+import { useBooleanToggle } from '../../hooks';
+
+const Test = memo(({ data }) => {
+  console.log('rendering');
+
+  return <div>{JSON.stringify(data)}</div>;
+});
 
 const Setting = () => {
   const {state, dispatch} = useContext(AppContext);
+  const { status, handleStatusChange } = useBooleanToggle();
+  const [isAdvancedSettingShown, setIsAdvancedSettingShown] = useState(false)
 
   const onChange = (e) => {
     const {value} = e.target;
@@ -14,9 +23,13 @@ const Setting = () => {
     })
   }
 
+  const data = useMemo(() => [2], []);
+
   return (
     <>
       <h1>Налаштування</h1>
+
+      <Test data={data}/>
 
       <div>
         <form>
@@ -31,6 +44,17 @@ const Setting = () => {
             </select>
           </label>
         </form>
+      </div>
+
+      <div>
+        <button onClick={handleStatusChange}>Розширені налаштування</button>
+
+        {status ? (
+            <div>
+              <h2>Розштрені Налаштування</h2>
+              <p>...</p>
+            </div>
+        ) : null}
       </div>
       </>
       )

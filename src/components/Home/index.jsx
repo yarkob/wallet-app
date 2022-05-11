@@ -1,37 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Balance from '../Balance';
 import Transactions from '../Transactions';
 import Form from '../Form';
 import ErrorBoundary from '../ErrorBoundary';
 import { Wrapper } from './styles';
-import { getItems, addItem } from '../../utils/indexdb';
+import { useData } from '../../hooks';
+import { STATUSES } from '../../constants';
 
 const Home = () => {
   const [balance, setBalance] = useState(0);
-  const [transactions, setTransactions] = useState([]);
 
-  useEffect(() => {
-    getItems().then((item) => {
-      setTransactions(item)
-    }).catch(() => {
-      console.error('error')
-    })
-  }, [setTransactions])
+  const { transactions, status, pushTransaction, onDelete, onStartClick} = useData();
 
-  const onChange = ({ value, date, comment }) => {
-    const transaction = {
-      value: +value,
-      comment,
-      date,
-      id: Date.now()
-    }
-    setTransactions([
-      transaction,
-      ...transactions])
-
-      setBalance(balance + Number(value))
-
-    addItem(transaction);
+  const onChange = (transaction) => {
+    pushTransaction(transaction)
+      setBalance(balance + Number(transaction.value))
   }
 
     return (
@@ -40,7 +23,16 @@ const Home = () => {
           <Balance balance={balance}/>
           <Form onChange={onChange}/>
           <hr/>
-           <Transactions transactions={transactions}/>
+
+          { status === STATUSES.PENDING ? (
+            <div>Loading...</div>
+          ): null}
+
+          { status === STATUSES.SUCCESS ? (
+            <Transactions transactions={transactions}
+            onDelete={onDelete}
+            onStartClick={onStartClick}/>
+          ): null}
         </Wrapper>
       </ErrorBoundary>
     )

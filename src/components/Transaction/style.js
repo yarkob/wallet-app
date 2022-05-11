@@ -6,6 +6,9 @@ export const Wrapper = styled.div`
   border-radius: 3px;
   padding: 5px;
   margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 Wrapper.displayName = 'TransactionWrapper';
@@ -24,3 +27,12 @@ export const Comment = styled.div`
     flex-grow: 2;
 `;
 Comment.displayName = 'Comment'
+
+export const Icon = styled.span`
+  img {
+    max-width: 20px;
+    margin-right: 10px;
+  }
+`;
+
+Icon.displayName = 'Icon';

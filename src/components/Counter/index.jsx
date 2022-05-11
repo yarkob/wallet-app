@@ -1,13 +1,18 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 
 const Counter = () => {
   const [clicks, setClicks] = useState(0)
     const [step, setStep] = useState(1)
 
+  const currentValue = useRef(0);
+
   const showValue = () => {
+    console.log(currentValue)
+
+    debugger
     setTimeout(() => {
-      alert(clicks)
+      alert(currentValue.current)
     }, 3000)
   }
 
@@ -29,7 +34,7 @@ const Counter = () => {
       <bt/>
       <button onClick={showValue}>Show value</button>
       <br/>
-      <input name="step" value={step} onChange={(e) => setStep(+e.target.value)}/>
+      <input ref={currentValue} name="step" value={step} onChange={(e) => setStep(+e.target.value)}/>
     </div>
   )
 };
